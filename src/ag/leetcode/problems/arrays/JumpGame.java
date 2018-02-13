@@ -10,23 +10,19 @@ public class JumpGame {
             return false;
         }
 
-        return jump(0, nums);
-    }
-
-    private boolean jump(int index, int[] nums) {
-        if (index >= nums.length - 1) {
-            return true;
-        }
-
-        // 2, 3, 1, 1, 4
-        if (nums[index] > 0) {
-            for (int i = nums[index]; i > 0; i--) {
-                if (jump(i + index, nums)) {
-                    return true;
+        loop:
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == 0) {
+                for (int j = 1; j <= i ; j++) {
+                    if (nums[i-j] > j) {
+                        continue loop;
+                    }
                 }
+                return false;
             }
         }
 
-        return false;
+        return true;
     }
+
 }
