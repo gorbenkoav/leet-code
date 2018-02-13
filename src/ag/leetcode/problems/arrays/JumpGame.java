@@ -18,9 +18,10 @@ public class JumpGame {
             return true;
         }
 
+        // 2, 3, 1, 1, 4
         if (nums[index] > 0) {
-            for (int i = index + 1; i < index + nums[index] + 1 && i < nums.length; i++) {
-                if (jump(i, nums)) {
+            for (int i = nums[index]; i > 0; i--) {
+                if (jump(i + index, nums)) {
                     return true;
                 }
             }
