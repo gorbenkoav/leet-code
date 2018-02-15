@@ -34,7 +34,7 @@ class AddTwoNumbers {
         return resNode;
     }
 
-    public static class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
 
