@@ -1,6 +1,10 @@
 package ag.leetcode.problems.arrays;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 /**
  * https://leetcode.com/problems/merge-k-sorted-lists/description/
@@ -8,26 +12,22 @@ import java.util.Arrays;
 public class MergeKSortedLists {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode fakeFirst = new ListNode(0);
-        merge(fakeFirst, Arrays.copyOf(lists, lists.length));
-        return fakeFirst.next;
-    }
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+        PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, Comparator.comparing(n -> n.val));
+        queue.addAll(Arrays.stream(lists).filter(Objects::nonNull).collect(Collectors.toList()));
 
-    private void merge(ListNode last, ListNode[] lists) {
-        int nextIndex = 0;
-        ListNode next = null;
-        for (int i = 0; i < lists.length; i++) {
-            if (next == null || (lists[i] != null && next.val > lists[i].val)) {
-                next = lists[i];
-                nextIndex = i;
+        ListNode fakeFirst = new ListNode(0);
+        ListNode tail = fakeFirst;
+        while (!queue.isEmpty()) {
+            tail.next = queue.poll();
+            tail = tail.next;
+            if (tail.next != null) {
+                queue.add(tail.next);
             }
         }
-
-        if (next != null) {
-            last.next = new ListNode(next.val);
-            lists[nextIndex] = next.next;
-            merge(last.next = next,lists);
-        }
+        return fakeFirst.next;
     }
 
     static class ListNode {
