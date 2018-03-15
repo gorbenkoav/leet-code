@@ -9,6 +9,28 @@ import java.util.List;
 public class RemoveNthNodeFromEndOfList {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode beforeDeleted = head;
+        ListNode richTheEnd = head;
+
+        for (int i = 0; i < n; i++) {
+            richTheEnd = richTheEnd.next;
+        }
+
+        if (richTheEnd == null) {
+            return head.next;
+        } else {
+            while (richTheEnd.next != null) {
+                beforeDeleted = beforeDeleted.next;
+                richTheEnd = richTheEnd.next;
+            }
+
+            beforeDeleted.next = beforeDeleted.next.next;
+        }
+
+        return head;
+    }
+
+    public ListNode removeNthFromEndIndexedArray(ListNode head, int n) {
         List<ListNode> numerated = new ArrayList<>();
         ListNode current = head;
         while (current != null) {
