@@ -9,7 +9,6 @@ class CombinationSumTest {
     @Test
     void combinationSum() {
         CombinationSum combinationSum = new CombinationSum();
-        System.out.println(combinationSum.combinationSum(new int[]{2, 3, 6, 7}, 7));
-      //  assertEquals(2, combinationSum.combinationSum(new int[]{2, 3, 6, 7}, 7).size());
+        assertEquals(2, combinationSum.combinationSum(new int[]{2, 3, 6, 7}, 7).size());
     }
 }
