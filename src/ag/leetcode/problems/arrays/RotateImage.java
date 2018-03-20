@@ -11,10 +11,10 @@ public class RotateImage {
         }
 
         for (int i = 0; i < matrix.length / 2; i++) {
-            for (int j = i; j < matrix.length - i - 1; j++) {
-                swap(matrix, i, j, matrix.length - 1 - i - j, i);
-                swap(matrix, matrix.length - 1 - i - j, i, matrix.length - 1 - i, matrix.length - 1 - i - j);
-                swap(matrix, matrix.length - 1 - i, matrix.length - 1 - i - j, j, matrix.length - 1 - i);
+            for (int j = i; j < matrix.length - 1 - i; j++) {
+                swap(matrix, i, j, matrix.length - 1 - j, i);
+                swap(matrix, matrix.length - 1 - j, i, matrix.length - 1 - i, matrix.length - 1 - j);
+                swap(matrix, matrix.length - 1 - i, matrix.length - 1 - j, j, matrix.length - 1 - i);
             }
         }
 
